@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Pets from "./Component/Pets";
+import { Provider } from 'react-redux';
+import petStore from './Redux/Store';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={petStore}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<h2>Welcome to Pets Web</h2>}></Route>
+          <Route path="/pets/list" element={<Pets/>}></Route>
+          <Route path="/pets/create" element={<h2>Pets Create</h2>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
